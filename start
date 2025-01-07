@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Function declarations
+int login();
+void menu();
+void initialize();
+void reserve();
+void cancel();
+void display();
+void pause();
+
+// Global predefined credentials
+#define USERNAME "admin"
+#define PASSWORD "password"
+
+// Passenger struct and global array
+#define MAX_SEATS 10
+#define NAME_LENGTH 30
+#define PASSPORT_LENGTH 10
+
+struct Passenger {
+    char* firstname;
+    char* surname;
+    char* passport;
+};
+
+struct Passenger passengers[MAX_SEATS];
+
+int main() {
+    initialize();
+
+    // Login logic
+    int success = 0;
+    while (!success) {
+        system("cls");
+        success = login();
+    }
+
+    // If login succeeds, show the menu
+    menu();
+
+    return 0;
+}
