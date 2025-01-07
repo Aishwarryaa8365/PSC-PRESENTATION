@@ -1,0 +1,11 @@
+void display() {
+    printf("\n\tSeat Layout:\n");
+    printf("\t==============================\n");
+
+    for (int i = 0; i < MAX_SEATS; i++) {
+        if (passengers[i].passport != NULL) {
+            printf("\tSeat %d: %s %s (Passport: %s)\n", i + 1, passengers[i].firstname, passengers[i].surname, passengers[i].passport);
+        } else {
+            printf("\tSeat %d: [Available]\n", i + 1);
+        }
+    }
