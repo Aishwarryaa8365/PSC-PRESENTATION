@@ -1,0 +1,9 @@
+// Initialize passenger array
+void initialize() {
+    for (int i = 0; i < MAX_SEATS; i++) {
+        passengers[i].firstname = NULL;
+        passengers[i].surname = NULL;
+        passengers[i].passport = NULL;
+    }
+}
+
