@@ -1,0 +1,6 @@
+// Pause and clear screen
+void pause() {
+    printf("\nPress any key to continue...");
+    getchar();
+    system("cls");
+}
