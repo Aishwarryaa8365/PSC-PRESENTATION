@@ -1,0 +1,34 @@
+// Cancel function (stub)
+void cancel() {
+    char passport[PASSPORT_LENGTH];
+
+    printf("\n\tEnter the Passport Number to cancel the reservation: ");
+    fgets(passport, PASSPORT_LENGTH, stdin);
+    passport[strcspn(passport, "\n")] = 0;  // Remove newline character
+
+    int found = 0;
+
+    for (int i = 0; i < MAX_SEATS; i++) {
+        if (passengers[i].passport != NULL && strcmp(passengers[i].passport, passport) == 0) {
+            // Free memory
+            free(passengers[i].firstname);
+            free(passengers[i].surname);
+            free(passengers[i].passport);
+
+            // Mark the seat as available
+            passengers[i].firstname = NULL;
+            passengers[i].surname = NULL;
+            passengers[i].passport = NULL;
+
+            printf("\n\tReservation for passport %s has been canceled successfully.\n", passport);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("\n\tNo reservation found for passport number %s.\n", passport);
+    }
+
+    pause();
+}
