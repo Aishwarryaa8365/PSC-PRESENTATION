@@ -1,0 +1,45 @@
+void reserve() {
+    int seat = -1;
+
+    // Find the first available seat
+    for (int i = 0; i < MAX_SEATS; i++) {
+        if (passengers[i].passport == NULL) {
+            seat = i;
+            break;
+        }
+    }
+
+    if (seat == -1) {
+        printf("\n\tSorry, no seats are available.\n");
+        pause();
+        return;
+    }
+
+    // Allocate memory for the passenger details
+    passengers[seat].firstname = (char*)malloc(NAME_LENGTH);
+    passengers[seat].surname = (char*)malloc(NAME_LENGTH);
+    passengers[seat].passport = (char*)malloc(PASSPORT_LENGTH);
+
+    if (!passengers[seat].firstname || !passengers[seat].surname || !passengers[seat].passport) {
+        printf("\n\tMemory allocation failed. Try again.\n");
+        pause();
+        return;
+    }
+
+    // Get passenger details
+    printf("\n\tEnter First Name: ");
+    fgets(passengers[seat].firstname, NAME_LENGTH, stdin);
+    passengers[seat].firstname[strcspn(passengers[seat].firstname, "\n")] = 0;  // Remove newline
+
+    printf("\n\tEnter Surname: ");
+    fgets(passengers[seat].surname, NAME_LENGTH, stdin);
+    passengers[seat].surname[strcspn(passengers[seat].surname, "\n")] = 0;
+
+    printf("\n\tEnter Passport Number: ");
+    fgets(passengers[seat].passport, PASSPORT_LENGTH, stdin);
+    passengers[seat].passport[strcspn(passengers[seat].passport, "\n")] = 0;
+
+    printf("\n\tSeat reserved successfully for %s %s.\n", passengers[seat].firstname, passengers[seat].surname);
+    pause();
+}
+
