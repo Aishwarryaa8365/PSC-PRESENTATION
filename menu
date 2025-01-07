@@ -1,0 +1,43 @@
+/ Menu function
+void menu() {
+    int choice;
+
+    do {
+        system("cls");
+        printf("\n\n\t\t*************\n");
+        printf("\t  **Welcome To Airline Reservation System**\n");
+        printf("\t\t\t   ******\n");
+        printf("\n\t\t  1. RESERVE SEAT");
+        printf("\n\t\t  2. CANCEL SEAT");
+        printf("\n\t\t  3. DISPLAY SEAT LAYOUT");
+        printf("\n\t\t  4. EXIT SYSTEM");
+        printf("\n\n\tEnter your choice: ");
+        scanf("%d", &choice);
+        getchar(); // Consume newline left by scanf
+
+        switch (choice) {
+            case 1:
+                reserve();
+                break;
+            case 2:
+                cancel();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                printf("\n\tExiting the system. Thank you!\n");
+                break;
+            default:
+                printf("\n\tInvalid choice. Please try again.\n");
+                pause();
+        }
+    } while (choice != 4);
+
+    // Free allocated memory before exiting
+    for (int i = 0; i < MAX_SEATS; i++) {
+        free(passengers[i].firstname);
+        free(passengers[i].surname);
+        free(passengers[i].passport);
+    }
+}
